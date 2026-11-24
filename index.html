@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f1e8">
+  <title>Kevin &amp; Karin — nuestra historia</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f1e8;
+      --paper-deep: #eee3d7;
+      --ink: #342d29;
+      --muted: #756a62;
+      --wine: #8d4e55;
+      --wine-dark: #713e45;
+      --gold: #bd9a69;
+      --white: #fffdfa;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px clamp(22px, 7vw, 100px);
+    }
+
+    .brand {
+      color: var(--wine-dark);
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+
+    .topbar nav { display: flex; gap: clamp(14px, 3vw, 34px); }
+
+    .topbar nav a {
+      color: var(--muted);
+      font-size: .82rem;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .topbar nav a:hover { color: var(--wine); }
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 720px;
+      min-height: min(820px, 100svh);
+      grid-template-columns: 1.02fr .98fr;
+      align-items: center;
+      gap: 5vw;
+      overflow: hidden;
+      padding: 130px clamp(24px, 9vw, 140px) 85px;
+      background:
+        radial-gradient(ellipse at 82% 25%, rgba(189, 154, 105, .13), transparent 34%),
+        var(--paper);
+    }
+
+    .hero::before, .hero::after {
+      position: absolute;
+      color: rgba(141, 78, 85, .12);
+      font-family: var(--serif);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      content: "♡";
+      top: 13%;
+      right: 4%;
+      font-size: clamp(90px, 14vw, 180px);
+      transform: rotate(15deg);
+    }
+
+    .hero::after {
+      content: "✦";
+      right: 48%;
+      bottom: 11%;
+      color: rgba(189, 154, 105, .35);
+      font-size: 2.4rem;
+    }
+
+    .hero-copy { position: relative; z-index: 1; max-width: 570px; }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--wine);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 20px;
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 7.5vw, 6.7rem);
+      font-weight: 400;
+      letter-spacing: -.065em;
+      line-height: .96;
+    }
+
+    h1 span { color: var(--wine); font-style: italic; }
+
+    .hero-copy .intro {
+      max-width: 440px;
+      margin-bottom: 29px;
+      color: var(--muted);
+      font-family: var(--serif);
+      font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    }
+
+    .date-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      border: 1px solid rgba(141, 78, 85, .2);
+      border-radius: 999px;
+      color: var(--wine-dark);
+      font-size: .82rem;
+      letter-spacing: .02em;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      justify-self: center;
+      width: min(100%, 440px);
+      padding: 15px;
+      background: var(--white);
+      box-shadow: 0 24px 70px rgba(67, 45, 37, .13);
+      transform: rotate(2deg);
+    }
+
+    .hero-photo-wrap::before {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      width: 88px;
+      height: 25px;
+      background: rgba(189, 154, 105, .5);
+      content: "";
+      transform: translateX(-50%) rotate(-5deg);
+    }
+
+    .hero-photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--paper-deep);
+      object-fit: cover;
+    }
+
+    .photo-caption {
+      margin: 12px 0 1px;
+      color: var(--muted);
+      font-family: var(--serif);
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .section {
+      padding: clamp(76px, 10vw, 130px) clamp(22px, 8vw, 120px);
+    }
+
+    .section-heading {
+      max-width: 670px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+
+    .section-heading p { margin-bottom: 0; color: var(--muted); }
+
+    .counter-section {
+      position: relative;
+      overflow: hidden;
+      background: var(--wine-dark);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .counter-section::before, .counter-section::after {
+      position: absolute;
+      color: rgba(255, 253, 250, .07);
+      content: "♡";
+      font-family: var(--serif);
+      font-size: 210px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .counter-section::before { top: -57px; left: -20px; transform: rotate(-18deg); }
+    .counter-section::after { right: -18px; bottom: -82px; transform: rotate(14deg); }
+    .counter-section .eyebrow { color: #e5cba7; }
+    .counter-section .section-heading { position: relative; z-index: 1; }
+    .counter-section .section-heading p { color: rgba(255, 253, 250, .76); }
+
+    .counter-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      max-width: 790px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 0 auto;
+    }
+
+    .counter-unit {
+      padding: 18px 10px 15px;
+      border-top: 1px solid rgba(255, 253, 250, .35);
+      border-bottom: 1px solid rgba(255, 253, 250, .35);
+    }
+
+    .counter-value {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.12;
+    }
+
+    .counter-label {
+      display: block;
+      margin-top: 5px;
+      color: #e5cba7;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .total-days {
+      position: relative;
+      z-index: 1;
+      margin: 22px 0 0;
+      color: rgba(255, 253, 250, .78);
+      font-family: var(--serif);
+      font-size: 1rem;
+    }
+
+    .letter-section { background: var(--white); }
+
+    .letter-card {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 60px);
+      border: 1px solid #e8ddd0;
+      background:
+        linear-gradient(rgba(255,255,255,.82), rgba(255,255,255,.82)),
+        repeating-linear-gradient(transparent 0 39px, #e9e1d8 40px);
+      box-shadow: 0 20px 55px rgba(67, 45, 37, .06);
+    }
+
+    .letter-card::before {
+      position: absolute;
+      top: 15px;
+      right: 22px;
+      color: rgba(141, 78, 85, .3);
+      content: "♡";
+      font-family: var(--serif);
+      font-size: 2rem;
+    }
+
+    .letter-card h3 {
+      margin-bottom: 18px;
+      color: var(--wine);
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .letter-card p {
+      margin-bottom: 15px;
+      color: #544943;
+      font-family: var(--serif);
+      font-size: clamp(1.04rem, 1.7vw, 1.2rem);
+      line-height: 1.9;
+    }
+
+    .letter-card .signoff {
+      margin: 22px 0 0;
+      color: var(--wine);
+      font-size: 1.35rem;
+      font-style: italic;
+    }
+
+    .song-section {
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(189, 154, 105, .13), transparent 35%),
+        var(--paper);
+    }
+
+    .song-card {
+      display: grid;
+      max-width: 850px;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 28px;
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 42px);
+      border: 1px solid rgba(141, 78, 85, .18);
+      background: rgba(255, 253, 250, .78);
+    }
+
+    .record {
+      display: grid;
+      width: clamp(100px, 18vw, 150px);
+      aspect-ratio: 1;
+      place-items: center;
+      border-radius: 50%;
+      background: repeating-radial-gradient(circle, #443a37 0 2px, #514643 3px 4px);
+      box-shadow: 0 10px 24px rgba(52, 45, 41, .18);
+      animation: spin 12s linear infinite paused;
+    }
+
+    .record.playing { animation-play-state: running; }
+
+    .record-center {
+      display: grid;
+      width: 36%;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 5px solid #f4e5cf;
+      border-radius: 50%;
+      background: var(--wine);
+      color: var(--white);
+      font-family: var(--serif);
+      font-size: 1.2rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .song-info .eyebrow { margin-bottom: 7px; }
+    .song-info h3 {
+      margin-bottom: 5px;
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .song-artist { margin-bottom: 20px; color: var(--muted); }
+
+    .music-video {
+      display: block;
+      width: min(100%, 500px);
+      aspect-ratio: 16 / 9;
+      height: auto;
+      margin: 0 0 16px;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    .song-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .button {
+      display: inline-flex;
+      min-height: 43px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border: 1px solid var(--wine);
+      border-radius: 3px;
+      background: var(--wine);
+      color: white;
+      cursor: pointer;
+      font: 600 .84rem var(--sans);
+      text-decoration: none;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .button:hover { background: var(--wine-dark); transform: translateY(-1px); }
+
+    .button.secondary { background: transparent; color: var(--wine); }
+    .button.secondary:hover { background: rgba(141, 78, 85, .08); }
+
+    .audio-player { display: none; width: min(100%, 370px); margin-top: 16px; }
+    .audio-player.visible { display: block; }
+    .audio-hint { margin: 14px 0 0; color: var(--muted); font-size: .78rem; }
+
+    .gallery-section { background: var(--white); }
+
+    .gallery-carousel {
+      display: grid;
+      max-width: 760px;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: clamp(10px, 3vw, 24px);
+      margin: 0 auto;
+    }
+
+    .gallery-viewport {
+      overflow: hidden;
+      background: var(--paper-deep);
+      box-shadow: 0 18px 48px rgba(67, 45, 37, .1);
+      touch-action: pan-y;
+    }
+
+    .gallery-viewport:focus-visible {
+      outline: 2px solid var(--wine);
+      outline-offset: 4px;
+    }
+
+    .gallery-track {
+      display: flex;
+      transition: transform .55s ease;
+    }
+
+    .gallery-item {
+      position: relative;
+      flex: 0 0 100%;
+      display: block;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      padding: 0;
+      border: 0;
+      background: var(--paper-deep);
+      cursor: zoom-in;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease, filter .45s ease;
+    }
+
+    .gallery-item:hover img { filter: brightness(.9); transform: scale(1.045); }
+
+    .carousel-control {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid rgba(141, 78, 85, .3);
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--wine-dark);
+      cursor: pointer;
+      font: 1.5rem var(--sans);
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .carousel-control:hover { background: var(--wine); color: var(--white); }
+
+    .carousel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .carousel-status {
+      min-width: 104px;
+      margin: 0;
+      color: var(--muted);
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    .carousel-toggle {
+      min-height: 36px;
+      padding: 7px 12px;
+      border: 1px solid rgba(141, 78, 85, .3);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--wine-dark);
+      cursor: pointer;
+      font: 600 .78rem var(--sans);
+    }
+
+    .carousel-toggle:hover { background: rgba(141, 78, 85, .08); }
+
+    .closing {
+      padding: 80px 24px;
+      background: var(--paper);
+      text-align: center;
+    }
+
+    .closing .heart { color: var(--wine); font-size: 1.7rem; }
+    .closing p {
+      max-width: 660px;
+      margin: 12px auto;
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      line-height: 1.25;
+    }
+
+    .closing small { color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+
+    .footer {
+      padding: 20px;
+      background: var(--paper);
+      color: var(--muted);
+      font-size: .75rem;
+      text-align: center;
+    }
+
+    dialog {
+      width: min(92vw, 1000px);
+      max-width: none;
+      max-height: 90vh;
+      padding: 12px;
+      border: 0;
+      background: #1d1918;
+      box-shadow: 0 24px 90px rgba(0, 0, 0, .35);
+    }
+
+    dialog::backdrop { background: rgba(25, 20, 19, .82); }
+
+    .lightbox-image {
+      display: block;
+      max-width: 100%;
+      max-height: calc(90vh - 24px);
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 50%;
+      background: rgba(29,25,24,.7);
+      color: white;
+      cursor: pointer;
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 38px;
+        padding: 130px clamp(24px, 9vw, 80px) 75px;
+      }
+
+      .hero-copy { margin: 0 auto; text-align: center; }
+      .hero-copy .intro { margin-right: auto; margin-left: auto; }
+      .hero-photo-wrap { width: min(78vw, 380px); }
+      .hero::after { right: 15%; bottom: 6%; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar { padding: 20px 22px; }
+      .topbar nav { gap: 14px; }
+      .topbar nav a { font-size: .74rem; }
+      .hero {
+        min-height: auto;
+        gap: 38px;
+        padding: 116px 25px 65px;
+      }
+      .counter-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 10px; }
+      .counter-unit { padding: 12px 5px; }
+      .song-card { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+      .song-info .eyebrow { margin-top: 0; }
+      .song-actions { justify-content: center; }
+      .audio-player { margin-right: auto; margin-left: auto; }
+      .gallery-carousel { gap: 9px; }
+      .carousel-control { width: 36px; height: 36px; }
+      .carousel-footer { gap: 10px; }
+    }
+
+    @media (max-width: 380px) {
+      .topbar { align-items: flex-start; }
+      .brand { font-size: 1.1rem; }
+      .topbar nav { flex-direction: column; align-items: flex-end; gap: 2px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio">Kevin &amp; Karin</a>
+    <nav aria-label="Navegación principal">
+      <a href="#historia">Nuestra historia</a>
+      <a href="#cancion">La canción</a>
+      <a href="#fotos">Recuerdos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">Un pequeño regalo para nosotros</p>
+        <h1>Kevin <span>&amp;</span><br>Karin</h1>
+        <p class="intro">Desde que llegaste, mis días tienen una razón más para sonreír. Esta es una pequeña celebración de todo lo bonito que construimos juntos.</p>
+        <span class="date-note"><span aria-hidden="true">♡</span> Desde el 24 de noviembre de 2023</span>
+      </div>
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" id="heroPhoto" alt="Un recuerdo especial de Kevin y Karin">
+        <p class="photo-caption">Mi lugar favorito siempre será a tu lado.</p>
+      </div>
+    </section>
+
+    <section class="section counter-section" id="historia">
+      <div class="section-heading">
+        <p class="eyebrow">Cada segundo cuenta</p>
+        <h2>Y todavía elegiría<br>empezar contigo</h2>
+        <p>El tiempo que llevamos compartiendo la vida, contado con todo mi amor.</p>
+      </div>
+      <div class="counter-grid" aria-label="Tiempo desde que comenzó nuestra relación">
+        <div class="counter-unit"><span class="counter-value" id="years">0</span><span class="counter-label">Años</span></div>
+        <div class="counter-unit"><span class="counter-value" id="months">0</span><span class="counter-label">Meses</span></div>
+        <div class="counter-unit"><span class="counter-value" id="days">0</span><span class="counter-label">Días</span></div>
+        <div class="counter-unit"><span class="counter-value" id="clock">00:00:00</span><span class="counter-label">Horas · min · seg</span></div>
+      </div>
+      <p class="total-days"><span id="totalDays">0</span> días de esta historia bonita</p>
+    </section>
+
+    <section class="section letter-section">
+      <div class="section-heading">
+        <p class="eyebrow">Unas palabras para ti</p>
+        <h2>Mivi,</h2>
+      </div>
+      <article class="letter-card">
+        <h3>Para Karin</h3>
+        <p>Gracias por cada risa, cada abrazo y cada momento que se volvió especial simplemente porque lo vivimos juntos. A tu lado aprendí que el amor también está en las cosas pequeñas: en acompañarnos, cuidarnos y elegirnos cada día.</p>
+        <p>Me encanta nuestra historia, con todos sus recuerdos y los que todavía nos esperan. Ojalá nunca nos falten motivos para reír, canciones para compartir y sueños que construir de la mano.</p>
+        <p class="signoff">TE AMO DEMASIADO MIVI HASTA EL INFINITO Y MÁS ALLÁ<br>— Kevin ♡</p>
+      </article>
+    </section>
+
+    <section class="section song-section" id="cancion">
+      <div class="section-heading">
+        <p class="eyebrow">Dale play a nuestros recuerdos</p>
+        <h2>Nuestra canción</h2>
+        <p>Porque hay canciones que, desde que las compartimos, ya tienen algo de nosotros.</p>
+      </div>
+      <div class="song-card">
+        <div class="record" id="record" aria-hidden="true"><div class="record-center">♡</div></div>
+        <div class="song-info">
+          <p class="eyebrow">Para Kevin &amp; Karin</p>
+          <h3>Eazt</h3>
+          <p class="song-artist">Jay Wheeler</p>
+          <iframe
+            class="music-video"
+            title="Jay Wheeler - EaZt (Official Video)"
+            src="https://www.youtube.com/embed/mN4NNG_YHeY?rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+          <div class="song-actions">
+            <a class="button" href="https://www.youtube.com/watch?v=mN4NNG_YHeY" target="_blank" rel="noopener noreferrer">Abrir en YouTube ↗</a>
+            <button class="button secondary" id="chooseAudio" type="button">Elegir audio del dispositivo</button>
+            <input id="audioFile" type="file" accept="audio/*" hidden>
+          </div>
+          <audio class="audio-player" id="audioPlayer" controls></audio>
+          <p class="audio-hint" id="audioHint">Pulsa ▶ en el reproductor para escuchar el videoclip oficial. No necesitas Apple Music, solo conexión a internet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery-section" id="fotos">
+      <div class="section-heading">
+        <p class="eyebrow">Pedacitos de nuestra historia</p>
+        <h2>Nosotros, en recuerdos</h2>
+        <p>Una colección de momentos que siempre quiero volver a mirar. Toca cualquier foto para verla más grande.</p>
+      </div>
+      <div class="gallery-carousel" aria-label="Carrusel de fotos">
+        <button class="carousel-control" id="galleryPrev" type="button" aria-label="Foto anterior">‹</button>
+        <div class="gallery-viewport" id="gallery" tabindex="0" aria-label="Fotos de Kevin y Karin">
+          <div class="gallery-track" id="galleryTrack"></div>
+        </div>
+        <button class="carousel-control" id="galleryNext" type="button" aria-label="Foto siguiente">›</button>
+      </div>
+      <div class="carousel-footer">
+        <p class="carousel-status" id="galleryStatus" aria-live="polite" aria-atomic="true"></p>
+        <button class="carousel-toggle" id="galleryToggle" type="button" aria-pressed="false">Pausar</button>
+      </div>
+    </section>
+
+    <section class="closing">
+      <span class="heart" aria-hidden="true">♡</span>
+      <p>TE AMO DEMASIADO MIVI HASTA EL INFINITO Y MÁS ALLÁ</p>
+      <small>Feliz Aniversor #3 Mivi!</small>
+    </section>
+  </main>
+
+  <footer class="footer">Hecho con amor, para Kevin &amp; Karin.</footer>
+
+  <dialog id="lightbox" aria-label="Foto ampliada">
+    <button class="lightbox-close" id="closeLightbox" type="button" aria-label="Cerrar foto">×</button>
+    <img class="lightbox-image" id="lightboxImage" alt="">
+  </dialog>
+
+  <script>
+    const startDate = new Date(2023, 10, 24, 0, 0, 0);
+    const photos = [
+      "WhatsApp Image 2026-11-23 at 7.18.40 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.40 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.41 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.41 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.41 PM (3).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.41 PM (4).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.41 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.42 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.42 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.42 PM (3).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.42 PM (4).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.42 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.43 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.43 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.43 PM (3).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.43 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.44 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.44 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.44 PM (3).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.44 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.18.45 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.25 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.25 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.25 PM (3).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.25 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.26 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.26 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.26 PM (3).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.26 PM (4).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.26 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.27 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.27 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.27 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.47 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.47 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.47 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.48 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.48 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.48 PM (3).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.48 PM (4).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.19.48 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.20.32 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.20.33 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.20.33 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.20.33 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.20.54 PM (1).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.20.54 PM (2).jpeg",
+      "WhatsApp Image 2026-11-23 at 7.20.54 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.21.20 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.21.30 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.21.40 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.21.50 PM.jpeg",
+      "WhatsApp Image 2026-11-23 at 7.22.21 PM.jpeg"
+    ];
+
+    const encodePath = (filename) => encodeURIComponent(filename).replace(/%2F/g, "/");
+    const gallery = document.getElementById("gallery");
+    const galleryTrack = document.getElementById("galleryTrack");
+    const galleryStatus = document.getElementById("galleryStatus");
+    const galleryToggle = document.getElementById("galleryToggle");
+    const heroPhoto = document.getElementById("heroPhoto");
+    heroPhoto.src = encodePath(photos[0]);
+
+    photos.forEach((filename, index) => {
+      const image = document.createElement("img");
+      image.src = encodePath(filename);
+      image.alt = `Recuerdo ${index + 1} de Kevin y Karin`;
+      image.loading = index < 3 ? "eager" : "lazy";
+      image.decoding = "async";
+
+      const button = document.createElement("button");
+      button.className = "gallery-item";
+      button.type = "button";
+      button.setAttribute("aria-label", `Ampliar recuerdo ${index + 1}`);
+      button.append(image);
+      galleryTrack.append(button);
+    });
+
+    let activePhoto = 0;
+    let carouselTimer;
+    let carouselPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function showPhoto(index) {
+      activePhoto = (index + photos.length) % photos.length;
+      galleryTrack.style.transform = `translateX(-${activePhoto * 100}%)`;
+      galleryStatus.textContent = `Recuerdo ${activePhoto + 1} de ${photos.length}`;
+    }
+
+    function stopCarousel() {
+      window.clearInterval(carouselTimer);
+      carouselTimer = undefined;
+    }
+
+    function startCarousel() {
+      stopCarousel();
+      if (!carouselPaused && !document.hidden) {
+        carouselTimer = window.setInterval(() => showPhoto(activePhoto + 1), 1500);
+      }
+    }
+
+    function setCarouselPaused(paused) {
+      carouselPaused = paused;
+      galleryToggle.textContent = paused ? "Reanudar" : "Pausar";
+      galleryToggle.setAttribute("aria-pressed", String(paused));
+      startCarousel();
+    }
+
+    showPhoto(0);
+    startCarousel();
+    galleryToggle.addEventListener("click", () => setCarouselPaused(!carouselPaused));
+    document.getElementById("galleryPrev").addEventListener("click", () => showPhoto(activePhoto - 1));
+    document.getElementById("galleryNext").addEventListener("click", () => showPhoto(activePhoto + 1));
+    gallery.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        showPhoto(activePhoto + (event.key === "ArrowRight" ? 1 : -1));
+      }
+    });
+    const galleryCarousel = document.querySelector(".gallery-carousel");
+    galleryCarousel.addEventListener("mouseenter", stopCarousel);
+    galleryCarousel.addEventListener("mouseleave", startCarousel);
+    galleryCarousel.addEventListener("focusin", stopCarousel);
+    galleryCarousel.addEventListener("focusout", (event) => {
+      if (!galleryCarousel.contains(event.relatedTarget)) startCarousel();
+    });
+    document.addEventListener("visibilitychange", startCarousel);
+
+    function updateCounter() {
+      const now = new Date();
+      if (now < startDate) return;
+
+      let years = now.getFullYear() - startDate.getFullYear();
+      let cursor = new Date(startDate);
+      cursor.setFullYear(startDate.getFullYear() + years);
+      if (cursor > now) {
+        years -= 1;
+        cursor = new Date(startDate);
+        cursor.setFullYear(startDate.getFullYear() + years);
+      }
+
+      let months = (now.getFullYear() - cursor.getFullYear()) * 12 + now.getMonth() - cursor.getMonth();
+      let monthCursor = new Date(cursor);
+      monthCursor.setMonth(cursor.getMonth() + months);
+      if (monthCursor > now) {
+        months -= 1;
+        monthCursor = new Date(cursor);
+        monthCursor.setMonth(cursor.getMonth() + months);
+      }
+
+      const elapsed = now - monthCursor;
+      const days = Math.floor(elapsed / 86400000);
+      const hours = Math.floor((elapsed % 86400000) / 3600000);
+      const minutes = Math.floor((elapsed % 3600000) / 60000);
+      const seconds = Math.floor((elapsed % 60000) / 1000);
+      const totalDays = Math.floor((now - startDate) / 86400000);
+
+      document.getElementById("years").textContent = years;
+      document.getElementById("months").textContent = months;
+      document.getElementById("days").textContent = days;
+      document.getElementById("clock").textContent = [hours, minutes, seconds].map((value) => String(value).padStart(2, "0")).join(":");
+      document.getElementById("totalDays").textContent = totalDays.toLocaleString("es");
+    }
+
+    updateCounter();
+    window.setInterval(updateCounter, 1000);
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    gallery.addEventListener("click", (event) => {
+      const button = event.target.closest(".gallery-item");
+      if (!button) return;
+      const image = button.querySelector("img");
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      lightbox.showModal();
+    });
+
+    document.getElementById("closeLightbox").addEventListener("click", () => lightbox.close());
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) lightbox.close();
+    });
+
+    const audioFile = document.getElementById("audioFile");
+    const audioPlayer = document.getElementById("audioPlayer");
+    const audioHint = document.getElementById("audioHint");
+    const record = document.getElementById("record");
+    let audioUrl;
+
+    document.getElementById("chooseAudio").addEventListener("click", () => audioFile.click());
+    audioFile.addEventListener("change", () => {
+      const file = audioFile.files && audioFile.files[0];
+      if (!file) return;
+      if (audioUrl) URL.revokeObjectURL(audioUrl);
+      audioUrl = URL.createObjectURL(file);
+      audioPlayer.src = audioUrl;
+      audioPlayer.classList.add("visible");
+      audioHint.textContent = file.name;
+      audioPlayer.play().catch(() => {
+        audioHint.textContent = `${file.name} — toca reproducir para escuchar.`;
+      });
+    });
+
+    audioPlayer.addEventListener("play", () => record.classList.add("playing"));
+    audioPlayer.addEventListener("pause", () => record.classList.remove("playing"));
+    audioPlayer.addEventListener("ended", () => record.classList.remove("playing"));
+    window.addEventListener("beforeunload", () => {
+      if (audioUrl) URL.revokeObjectURL(audioUrl);
+    });
+  </script>
+</body>
+</html>
